@@ -1,12 +1,17 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { myContext } from '../../myContext/myContext'
 
-const Card = ({ product }) => {
-    return (
-        <div>
-            <h4>{product.name}</h4>
-            <h4>{product.price}</h4>
-        </div>
-    )
+const Card = () => {
+    const [proudact, setproudact]  = useContext(myContext)
+  return (
+    <div>
+      {
+        proudact.map(item=>{
+            return <h1>{item.name}</h1>
+        })
+      }
+    </div>
+  )
 }
 
 export default Card

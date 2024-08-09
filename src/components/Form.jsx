@@ -1,27 +1,25 @@
-import React, { useContext, useRef } from 'react'
-import { MyContext } from '../myContext/Mycontext'
+import React, { useContext, useRef } from "react";
+import { myContext } from "../../myContext/myContext";
 
 const Form = () => {
-    const [products, setProducts] = useContext(MyContext)
-    const name = useRef('')
-    const price = useRef(0)
+    const [proudact, setproudact] = useContext(myContext)
+  const name = useRef();
+  const price = useRef();
+  const submitHandler = (e) => {
+    e.preventDefault();
+    setproudact([...proudact, { id: new Date().getTime(), name: name.current.value, price: price.current.value }]);
+    
+  };
 
+  return (
+    <div>
+      <form onSubmit={submitHandler}>
+        <input type="text" placeholder="name" ref={name} />
+        <input type="text" placeholder="price" ref={price} />
+        <button type="submit">add prd</button>
+      </form>
+    </div>
+  );
+};
 
-    const submitHandler = (e) => {
-        e.preventDefault()
-        setProducts([...products, { id: new Date(), name: name.current.value, price: price.current.value }])
-
-    }
-
-    return (
-        <div>
-            <form onSubmit={submitHandler}>
-                <input type='text' ref={name} />
-                <input type='number' ref={price} />
-                <input type='submit' value="add new Product" />
-            </form>
-        </div>
-    )
-}
-
-export default Form
+export default Form;
